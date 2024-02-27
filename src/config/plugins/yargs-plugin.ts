@@ -2,20 +2,26 @@ import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers';
 
 export const yarg = yargs(hideBin(process.argv))
-  .option('n', {
-    alias: 'nombre',
-    type: 'string',
-    demandOption: true,
-    describe: 'Usuario agregado/Creado'
-  })
-  .option('m', {
-    alias: 'monto',
+  .option('i', {
+    alias: 'id',
     type: 'number',
     demandOption: false,
+    describe: 'id Usuario'
+  })
+  .option('n', {
+    alias: 'name',
+    type: 'string',
+    demandOption: false,
+    describe: 'Usuario agregado/Creado'
+  })
+  .option('a', {
+    alias: 'availableMoney',
+    type: 'number',
+    default: 0,
     describe: 'Capital agregado'
   })
-  .option('x', {
-    alias: 'resetear',
+  .option('b', {
+    alias: 'borrar',
     type: 'boolean',
     default: false,
     describe: 'Resetea todos los gastos'
@@ -43,5 +49,15 @@ export const yarg = yargs(hideBin(process.argv))
     type: 'string',
     demandOption: false,
     describe: 'Gasto de Ocio'
+  })
+  .check((argv, options) => {
+
+    if(isNaN(argv.a)) throw 'El monto debe ser un numero'
+
+    if( argv.n === undefined && argv.i === undefined) {
+      throw `Debes Actualizar un usuario existente o crear uno!`
+    }
+
+    return true
   })
   .parseSync()

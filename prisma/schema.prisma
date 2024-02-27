@@ -10,19 +10,19 @@ datasource db {
   url      = env("POSTGRES_URL")
 }
 
-model Gastos {
+model Gasto {
   id        Int     @id @default(autoincrement())
-  usuario   Usuario @relation(fields: [usuarioId], references: [id])
+  user   User @relation(fields: [usuarioId], references: [id])
   usuarioId Int     @unique
   monto     Int     // Nuevo campo para almacenar el monto del gasto
   tipoDeGasto String // Nuevo campo para almacenar el tipo de gasto
 }
 
-model Usuario {
-  id Int @id @default(autoincrement())
-  nombre String
-  monto Int
-  gastos Gastos[]
+model User {
+  id              Int      @id @default(autoincrement())
+  name            String
+  availableMoney  Int
+  gastos          Gasto[]  // Relación uno a muchos con la tabla Gasto
 }
 
 

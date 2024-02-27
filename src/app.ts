@@ -7,15 +7,17 @@ import { ServerApp } from "./presentation/server-app"
 
 async function main() {
   const {
-    n: nombre,
-    m: monto = 0,
-    x: resetear,
+    i: id,
+    n: name,
+    a: availableMoney = 0,
+    b: borrar,
     l: listar,
     c: comida,
     t: transporte,
     o: ocio
   } = yarg
-  ServerApp.run({nombre, monto, resetear, listar, comida, transporte, ocio})
+
+  ServerApp.run({id, name, availableMoney, borrar, listar, comida, transporte, ocio})
 
   // const prisma = new PrismaClient()
   // // const newUsuario = await prisma.usuario.create({
