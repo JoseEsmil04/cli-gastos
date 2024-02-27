@@ -13,7 +13,7 @@ export class UpdateMoneyUser {
         throw new Error('Usuario no encontrado')
       }
 
-      user.availableMoney = newMoney;
+      user.money = newMoney;
       await this.userRepository.updateMoneyUser(userId, newMoney);
       
       console.log(`Dinero actualizado para el usuario ${userId}. Nuevo balance: ${newMoney}`)

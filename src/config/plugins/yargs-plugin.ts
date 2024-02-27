@@ -2,6 +2,30 @@ import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers';
 
 export const yarg = yargs(hideBin(process.argv))
+  .option('c', {
+    alias: 'create',
+    type: 'boolean',
+    default: false,
+    describe: 'Crea un usuario o un gasto'
+  })
+  .option('l', {
+    alias: 'list',
+    type: 'boolean',
+    default: false,
+    describe: 'Listar todos los gastos'
+  })
+  .option('u', {
+    alias: 'update',
+    type: 'boolean',
+    default: false,
+    describe: 'Comando para actualizar el usuario'
+  })
+  .option('d', {
+    alias: 'delet',
+    type: 'boolean',
+    default: false,
+    describe: 'Borra el usuario/gasto'
+  })
   .option('i', {
     alias: 'id',
     type: 'number',
@@ -14,26 +38,14 @@ export const yarg = yargs(hideBin(process.argv))
     demandOption: false,
     describe: 'Usuario agregado/Creado'
   })
-  .option('a', {
-    alias: 'availableMoney',
+  .option('m', {
+    alias: 'money',
     type: 'number',
     default: 0,
     describe: 'Capital agregado'
   })
-  .option('b', {
-    alias: 'borrar',
-    type: 'boolean',
-    default: false,
-    describe: 'Resetea todos los gastos'
-  })
-  .option('l', {
-    alias: 'listar',
-    type: 'boolean',
-    default: false,
-    describe: 'Listar los gastos y el dinero restante'
-  })
-  .option('c', {
-    alias: 'comida',
+  .option('a', {
+    alias: 'alimentacion',
     type: 'string',
     demandOption: false,
     describe: 'Gasto de Comida'
@@ -52,10 +64,10 @@ export const yarg = yargs(hideBin(process.argv))
   })
   .check((argv, options) => {
 
-    if(isNaN(argv.a)) throw 'El monto debe ser un numero'
+    if(isNaN(argv.m)) throw 'El monto debe ser un numero'
 
-    if( argv.n === undefined && argv.i === undefined) {
-      throw `Debes Actualizar un usuario existente o crear uno!`
+    if(!(argv.c || argv.l || argv.u || argv.d)) {
+      throw `Debes proporcionar un comando principal!`
     }
 
     return true

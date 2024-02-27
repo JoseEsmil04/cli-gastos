@@ -5,12 +5,14 @@ import { UserRepositoryImplementation } from "../infrastructure/repositories/use
 import { PostgresDatasource } from "../infrastructure/datasources/user-pgsql-datasource";
 
 interface Comandos {
+  create?: boolean
+  list?: boolean
+  update?: boolean
+  delet?: boolean
   id?: number
   name?: string
-  availableMoney?: number
-  borrar?: boolean
-  listar?: boolean
-  comida?: string
+  money?: number
+  alimentacion?: string
   transporte?: string
   ocio?: string
 }
@@ -23,25 +25,29 @@ export class ServerApp {
     )
     console.log('Iniciando Programa...')
 
-    const {id, name, availableMoney, borrar, listar, comida, transporte, ocio} = options
+    const { create, list, update, delet, id, name, money, alimentacion, transporte, ocio } = options
 
-    if(id === undefined && name !== undefined) {
+    if(create) {
       const createUser = new CreateUser(userRepository)
-      if(!availableMoney) {
-        console.log(`Debes especificar el monto para crear el usuario`)
+      if(!money || name === undefined) {
+        console.log(`Debes proporcionar el nombre y monto para crear el usuario`)
         return
       }
-      createUser.execute({name, availableMoney})
+      createUser.execute({name, money})
     }
 
-    if(id !== undefined && availableMoney !== undefined) {
+    if(update) {
       const updateUser = new UpdateMoneyUser(userRepository)
-      updateUser.execute(id, availableMoney)
+      if(!id || !money) {
+        console.log(`Debes proporcionar el id y nuevo monto para actualizar el usuario!`)
+        return
+      }
+      updateUser.execute(id, money)
     }
 
-    if(id !== undefined && borrar) {
+    if(delet) {
       const deleteUser = new DeleteUser(userRepository)
-      deleteUser.execute(id)
+      return id ? deleteUser.execute(id) : console.log('Debes proporcionar el id del usuario!')
     }
 
   }

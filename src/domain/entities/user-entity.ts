@@ -1,15 +1,15 @@
 interface UserInterface {
   name: string;
-  availableMoney: number;
+  money: number;
 }
 
 export class UserEntity {
   public name: string;
-  public availableMoney: number;
+  public money: number;
 
   constructor(opciones: UserInterface) {
-    const { name, availableMoney } = opciones
+    const { name, money } = opciones
     this.name = name;
-    this.availableMoney = availableMoney;
+    this.money = money;
   }
 }

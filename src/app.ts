@@ -7,36 +7,22 @@ import { ServerApp } from "./presentation/server-app"
 
 async function main() {
   const {
+    c: create,
+    l: list,
+    u: update,
+    d: delet,
     i: id,
     n: name,
-    a: availableMoney = 0,
-    b: borrar,
-    l: listar,
-    c: comida,
+    m: money = 0,
+    a: alimentacion,
     t: transporte,
     o: ocio
   } = yarg
 
-  ServerApp.run({id, name, availableMoney, borrar, listar, comida, transporte, ocio})
-
-  // const prisma = new PrismaClient()
-  // // const newUsuario = await prisma.usuario.create({
-  // //   data: {
-  // //     nombre: 'Maria',
-  // //     monto: 34555
-  // //   }
-  // // })
+  console.log(create, list, update, delet, id, name, money, alimentacion, transporte, ocio )
 
 
-  // const getUsers = await prisma.usuario.findMany({
-  //   where: {
-  //     monto: {
-  //       gt: 5000
-  //     }
-  //   }
-  // })
-
-  // console.log(getUsers)
+  ServerApp.run({ create, list, update, delet, id, name, money, alimentacion, transporte, ocio })
 }
 
 

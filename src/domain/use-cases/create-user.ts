@@ -18,10 +18,10 @@ export class CreateUser implements CreateUserInterface {
   }
 
   async execute(options: UserEntity): Promise<void> {
-    const { name, availableMoney } = options
+    const { name, money } = options
 
     try {
-      const user = new UserEntity({name, availableMoney})
+      const user = new UserEntity({name, money})
       this.userRepository.createUser(user)
       return
     } catch (error) {

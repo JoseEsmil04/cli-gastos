@@ -21,7 +21,7 @@ model Gasto {
 model User {
   id              Int      @id @default(autoincrement())
   name            String
-  availableMoney  Int
+  money  Int
   gastos          Gasto[]  // Relación uno a muchos con la tabla Gasto
 }
 

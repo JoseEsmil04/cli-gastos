@@ -10,17 +10,17 @@ export class PostgresDatasource implements UserDatasource {
     const newUser = await prismaClient.user.create({
       data: {
         name: user.name,
-        availableMoney: user.availableMoney
+        money: user.money
       }
     })
 
-    const { id, name, availableMoney } = newUser
+    const { id, name, money } = newUser
 
     console.log(
     `Nuevo Usuario Creado
       id: ${ id }
       nombre: ${name}
-      Dinero: ${availableMoney}`)
+      Dinero: ${money}`)
   }
 
   async getUserById(userId: number): Promise<UserEntity | null> {
@@ -38,7 +38,7 @@ export class PostgresDatasource implements UserDatasource {
         id: userId
       },
       data: {
-        availableMoney: newMoney
+        money: newMoney
       }
     })
 
