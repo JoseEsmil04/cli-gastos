@@ -9,7 +9,7 @@
     "start": "npm run build && node dist/app.js"
   },
   "author": "Jose Campusano",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.11.13",
     "@types/yargs": "^17.0.32",
