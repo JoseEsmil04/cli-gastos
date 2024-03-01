@@ -1,6 +1,6 @@
-import { GastoEntity, GastoType } from "../entities/gasto-entity";
+import { GastoEntity, GastoTypes } from "../entities/gasto-entity";
 
 export abstract class GastoRepository {
   abstract saveGasto(gasto: GastoEntity): Promise<void>
-  abstract getGastos(type: GastoType): Promise<GastoEntity[]>
+  abstract getGastos(tipo: GastoTypes): Promise<GastoEntity[]>
 }

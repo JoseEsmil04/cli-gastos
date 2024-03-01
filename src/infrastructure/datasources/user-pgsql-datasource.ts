@@ -42,7 +42,8 @@ export class PostgresDatasource implements UserDatasource {
       }
     })
 
-    console.log(`User: ${updateMoney}`)
+    const {name, id} = updateMoney
+    console.log(`Id: ${id} Nombre: ${name}`)
   }
 
   async deleteUser(userId: number): Promise<void> {

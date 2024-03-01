@@ -1,5 +1,6 @@
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers';
+import { GastoTypes } from '../../domain/entities/gasto-entity';
 
 export const yarg = yargs(hideBin(process.argv))
   .option('c', {
@@ -29,7 +30,7 @@ export const yarg = yargs(hideBin(process.argv))
   .option('i', {
     alias: 'id',
     type: 'number',
-    demandOption: false,
+    default: 1,
     describe: 'id Usuario'
   })
   .option('n', {
@@ -43,6 +44,12 @@ export const yarg = yargs(hideBin(process.argv))
     type: 'number',
     default: 0,
     describe: 'Capital agregado'
+  })
+  .option('g', {
+    alias: 'gasto',
+    type: 'boolean',
+    default: false,
+    describe: 'Para crear gasto'
   })
   .option('a', {
     alias: 'alimentacion',
@@ -62,11 +69,19 @@ export const yarg = yargs(hideBin(process.argv))
     demandOption: false,
     describe: 'Gasto de Ocio'
   })
+  .option('t', {
+    alias: 'tipo',
+    choices: Object.values(GastoTypes),
+    describe: 'Tipo de gasto',
+    demandOption: false
+  })
   .check((argv, options) => {
 
     if(isNaN(argv.m)) throw 'El monto debe ser un numero'
 
-    if(!(argv.c || argv.l || argv.u || argv.d)) {
+    if(isNaN(argv.i)) throw 'El id debe ser un numero'
+
+    if(!(argv.c || argv.l || argv.u || argv.d || argv.t)) {
       throw `Debes proporcionar un comando principal!`
     }
 

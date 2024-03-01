@@ -10,12 +10,19 @@ datasource db {
   url      = env("POSTGRES_URL")
 }
 
+enum GastoType {
+  ALIMENTACION
+  TRANSPORTE
+  OCIO
+}
+
 model Gasto {
   id        Int     @id @default(autoincrement())
   user   User @relation(fields: [usuarioId], references: [id])
-  usuarioId Int     @unique
+  usuarioId Int     
   monto     Int     // Nuevo campo para almacenar el monto del gasto
-  tipoDeGasto String // Nuevo campo para almacenar el tipo de gasto
+  tipo GastoType // Nuevo campo para almacenar el tipo de gasto
+  creationDate DateTime @default(now())
 }
 
 model User {

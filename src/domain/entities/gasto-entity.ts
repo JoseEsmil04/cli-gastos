@@ -1,28 +1,41 @@
-export enum GastoType {
-  Alimentacion = 'Alimentacion',
-  Transporte = 'Transporte',
-  Ocio = 'Ocio'
+export enum GastoTypes {
+  alimentacion = 'alimentacion',
+  tansporte = 'transporte',
+  ocio = 'ocio'
 }
 
 export interface GastoInterface {
-  type: GastoType
-  amount: number
-  creationDate: Date
-  userId: string
+  tipo: GastoTypes
+  monto: number
+  creationDate?: Date
+  usuarioId: number
 }
 
 export class GastoEntity {
-  public type: GastoType
-  public amount: number
+  public usuarioId: number
+  public monto: number
+  public tipo: GastoTypes
   public creationDate: Date
-  public userId: string
 
   constructor(opciones: GastoInterface) {
-    const {type, amount, creationDate = new Date(), userId} = opciones
+    const {usuarioId, monto, tipo, creationDate = new Date()} = opciones
 
-    this.type = type
-    this.amount = amount
+    this.usuarioId = usuarioId
+    this.monto = monto
+    this.tipo = tipo
     this.creationDate = creationDate
-    this.userId = userId
+  }
+
+  static parsearObjeto = (object:{[key: string]: any}): GastoEntity => {
+    const { usuarioId, monto, tipo, creationDate } = object
+
+    const formattedGasto = new GastoEntity({
+      usuarioId,
+      monto,
+      tipo,
+      creationDate
+    })
+
+    return formattedGasto
   }
 }
