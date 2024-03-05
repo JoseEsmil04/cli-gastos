@@ -51,24 +51,6 @@ export const yarg = yargs(hideBin(process.argv))
     default: false,
     describe: 'Para crear gasto'
   })
-  .option('a', {
-    alias: 'alimentacion',
-    type: 'string',
-    demandOption: false,
-    describe: 'Gasto de Comida'
-  })
-  .option('t', {
-    alias: 'transporte',
-    type: 'string',
-    demandOption: false,
-    describe: 'Gasto de Transporte'
-  })
-  .option('o', {
-    alias: 'ocio',
-    type: 'string',
-    demandOption: false,
-    describe: 'Gasto de Ocio'
-  })
   .option('t', {
     alias: 'tipo',
     choices: Object.values(GastoTypes),

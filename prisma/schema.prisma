@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,29 +7,24 @@ datasource db {
   url      = env("POSTGRES_URL")
 }
 
+model Gasto {
+  id           Int       @id @default(autoincrement())
+  usuarioId    Int
+  monto        Int
+  tipo         GastoType
+  creationDate DateTime  @default(now())
+  user         User      @relation(fields: [usuarioId], references: [id])
+}
+
+model User {
+  id     Int     @id @default(autoincrement())
+  name   String  @unique(map: "unique_name")
+  money  Int
+  gastos Gasto[]
+}
+
 enum GastoType {
   ALIMENTACION
   TRANSPORTE
   OCIO
 }
-
-model Gasto {
-  id        Int     @id @default(autoincrement())
-  user   User @relation(fields: [usuarioId], references: [id])
-  usuarioId Int     
-  monto     Int     // Nuevo campo para almacenar el monto del gasto
-  tipo GastoType // Nuevo campo para almacenar el tipo de gasto
-  creationDate DateTime @default(now())
-}
-
-model User {
-  id              Int      @id @default(autoincrement())
-  name            String
-  money  Int
-  gastos          Gasto[]  // Relación uno a muchos con la tabla Gasto
-}
-
-
-
-
-

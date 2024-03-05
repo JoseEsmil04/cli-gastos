@@ -6,9 +6,6 @@ interface CreateUserInterface {
   execute(usuario: UserEntity): Promise<void>
 }
 
-// type SuccessCB = ((succes: string) => void) | undefined
-// type ErrorCB = ((error: string) => void) | undefined
-
 export class CreateUser implements CreateUserInterface {
 
   constructor(
