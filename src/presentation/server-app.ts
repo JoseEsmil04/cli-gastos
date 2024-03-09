@@ -24,6 +24,7 @@ interface Comandos {
 export class ServerApp {
 
   static async run(options: Comandos) {
+    //* Conexion con los datasources
     const userRepository = new UserRepositoryImplementation(
       new PostgresDatasource()
     )
@@ -31,9 +32,11 @@ export class ServerApp {
     const gastoRepository = new GastoRepositoryImplementation(
       new GastoPostgresDatasource()
     )
-    console.log('Iniciando Programa...')
+    console.log('****  Iniciando Programa  ****')
 
     const { create, list, update, delet, id, name, money, gasto, tipo } = options
+
+
 
     if(create && !gasto) {
       const createUser = new CreateUser(userRepository)
@@ -57,7 +60,7 @@ export class ServerApp {
 
     if(gasto) {
       if(create && tipo) {
-        const createGasto = new AgregarGasto(gastoRepository)
+        const createGasto = new AgregarGasto(gastoRepository, userRepository)
         createGasto.execute({ usuarioId: id,  monto: money, tipo: tipo, creationDate: new Date()})
       }else if(list && tipo) {
         const getAllGastos = new GetGastosUseCase(gastoRepository)
@@ -65,6 +68,4 @@ export class ServerApp {
       }
     }
   }
-
-  
 }

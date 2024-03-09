@@ -7,6 +7,18 @@ const prismaClient = new PrismaClient()
 export class PostgresDatasource implements UserDatasource {
   async createUser(user: UserEntity): Promise<void> {
 
+    const findUser = await prismaClient.user.findFirst({
+      where: {
+        name: user.name
+      }
+    })
+
+    if(findUser) {
+      console.log(`El usuario con el nombre: ${findUser.name} ya existe.
+                  Intenta de nuevo con otro nombre`)
+      return
+    }
+
     const newUser = await prismaClient.user.create({
       data: {
         name: user.name,
@@ -32,6 +44,7 @@ export class PostgresDatasource implements UserDatasource {
 
     return findUser
   }
+  
   async updateMoneyUser(userId: number, newMoney: number): Promise<void> {
     const updateMoney = await prismaClient.user.update({
       where: {
@@ -43,7 +56,10 @@ export class PostgresDatasource implements UserDatasource {
     })
 
     const {name, id} = updateMoney
-    console.log(`Id: ${id} Nombre: ${name}`)
+    console.log(
+    `Dinero Actualizado para Id: ${id} Nombre: ${name}
+    Ahora cuenta con ${newMoney}`
+    )
   }
 
   async deleteUser(userId: number): Promise<void> {
@@ -52,7 +68,8 @@ export class PostgresDatasource implements UserDatasource {
         id: userId
       }
     })
-    console.log(`${deleteUserQuery} borrado`)
+    
+    console.log(`${deleteUserQuery.id} ${deleteUserQuery.name} borrado!`)
   }
 
 }

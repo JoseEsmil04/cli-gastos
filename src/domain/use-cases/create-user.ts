@@ -1,7 +1,6 @@
 import { UserEntity } from "../entities/user-entity"
 import { UserRepository } from '../repository/user-repository';
 
-
 interface CreateUserInterface {
   execute(usuario: UserEntity): Promise<void>
 }
@@ -22,6 +21,7 @@ export class CreateUser implements CreateUserInterface {
       this.userRepository.createUser(user)
       return
     } catch (error) {
+      console.error(`${error}`)
       return
     }
   }

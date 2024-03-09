@@ -16,7 +16,7 @@ export class GetGastosUseCase implements GetGastosUseCaseInteface {
 			console.log(gastos)
 			return
 		} catch (error) {
-			console.log(error)
+			throw `${error}`
 		}
 	}
 }

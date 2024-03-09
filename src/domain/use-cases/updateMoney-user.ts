@@ -14,9 +14,7 @@ export class UpdateMoneyUser {
       }
 
       user.money = newMoney;
-      await this.userRepository.updateMoneyUser(userId, newMoney);
-      
-      console.log(`Dinero actualizado para el usuario ${userId}. Nuevo balance: ${newMoney}`)
+      await this.userRepository.updateMoneyUser(userId, newMoney)
     } catch (error) {
       console.error(`${error}`)
     }

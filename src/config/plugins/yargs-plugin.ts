@@ -7,49 +7,49 @@ export const yarg = yargs(hideBin(process.argv))
     alias: 'create',
     type: 'boolean',
     default: false,
-    describe: 'Crea un usuario o un gasto'
+    describe: 'Bandera para crear un usuario o un gasto'
   })
   .option('l', {
     alias: 'list',
     type: 'boolean',
     default: false,
-    describe: 'Listar todos los gastos'
+    describe: 'Bandera para listar todos los gastos'
   })
   .option('u', {
     alias: 'update',
     type: 'boolean',
     default: false,
-    describe: 'Comando para actualizar el usuario'
+    describe: 'Bandera para actualizar el usuario'
   })
   .option('d', {
     alias: 'delet',
     type: 'boolean',
     default: false,
-    describe: 'Borra el usuario/gasto'
+    describe: 'Bandera para borrar usuario'
   })
   .option('i', {
     alias: 'id',
     type: 'number',
     default: 1,
-    describe: 'id Usuario'
+    describe: 'Bandera para enviar el id Usuario'
   })
   .option('n', {
     alias: 'name',
     type: 'string',
     demandOption: false,
-    describe: 'Usuario agregado/Creado'
+    describe: 'Bandera para enviar el nombre del usuario'
   })
   .option('m', {
     alias: 'money',
     type: 'number',
     default: 0,
-    describe: 'Capital agregado'
+    describe: 'Bandera para agregar dinero'
   })
   .option('g', {
     alias: 'gasto',
     type: 'boolean',
     default: false,
-    describe: 'Para crear gasto'
+    describe: 'Bandera para crear gasto'
   })
   .option('t', {
     alias: 'tipo',

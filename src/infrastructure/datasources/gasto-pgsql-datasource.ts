@@ -26,18 +26,17 @@ export class GastoPostgresDatasource implements GastoDatasource {
     if(user) {
       const operation = user.money -= gasto.monto;
 
+      // Validar si el gasto no es mas caro que el monto disponible
       if(operation >= 0) {
         user.money = operation
         const updateMoneyUser = new UpdateMoneyUser(new PostgresDatasource())
         updateMoneyUser.execute(user.id, user.money)
       } else {
-        console.log('No tienes suficiente dinero para registrar este gasto')
-        return
+        throw 'No tienes suficiente dinero para registrar este gasto'
       }
 
     }
 
-    
     const newGasto = await prisma.gasto.create({
       data: {
         usuarioId: gasto.usuarioId,
