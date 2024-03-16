@@ -1,6 +1,6 @@
-import { UserDatasource } from "../../domain/datasources/user-datasource";
-import { UserEntity } from "../../domain/entities/user-entity";
-import { UserRepository } from "../../domain/repository/user-repository";
+import { UserDatasource } from "../../domain/datasources"
+import { UserEntity } from "../../domain/entities"
+import { UserRepository } from "../../domain/repository"
 
 
 export class UserRepositoryImplementation implements UserRepository {

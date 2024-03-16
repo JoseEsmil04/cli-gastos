@@ -1,5 +1,5 @@
-import { UserEntity } from "../entities/user-entity"
-import { UserRepository } from '../repository/user-repository';
+import { UserEntity } from "../entities"
+import { UserRepository } from "../repository"
 
 interface CreateUserInterface {
   execute(usuario: UserEntity): Promise<void>

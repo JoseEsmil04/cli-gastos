@@ -1,8 +1,8 @@
 import { PrismaClient, GastoType } from "@prisma/client";
-import { GastoDatasource } from "../../domain/datasources/gasto-datasource";
-import { GastoEntity, GastoTypes } from "../../domain/entities/gasto-entity";
-import { UpdateMoneyUser } from "../../domain/use-cases/updateMoney-user";
+import { GastoDatasource } from "../../domain/datasources";
+import { GastoEntity, GastoTypes } from "../../domain/entities";
 import { PostgresDatasource } from "./user-pgsql-datasource";
+import { UpdateMoneyUser } from "../../domain/use-cases/updateMoney-user";
 
 
 const prisma = new PrismaClient()

@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-import { UserDatasource } from "../../domain/datasources/user-datasource";
-import { UserEntity } from "../../domain/entities/user-entity";
+import { UserDatasource } from "../../domain/datasources";
+import { UserEntity } from "../../domain/entities";
 
 const prismaClient = new PrismaClient()
 

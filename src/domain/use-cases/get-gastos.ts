@@ -1,5 +1,5 @@
-import { GastoRepository } from "../repository/gasto-repository";
-import { GastoTypes } from '../entities/gasto-entity';
+import { GastoRepository } from "../repository";
+import { GastoTypes } from '../entities';
 
 interface GetGastosUseCaseInteface {
 	execute(tipo: GastoTypes): Promise<void>

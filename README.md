@@ -29,6 +29,6 @@ npx ts-node -- banderas a ejecutar ---
 
 # Gasto
 ```
--g -i 1 -m 245 -t ocio // Crea el gasto del usuario con el id 1 con el monto 245.00 y de tipo ocio
+-c -g -i 1 -m 245 -t ocio // Crea el gasto del usuario con el id 1 con el monto 245.00 y de tipo ocio
 -g -l -t // Muestra todos los gastos registrados por tipo
 ```

@@ -1,6 +1,6 @@
-import { GastoDatasource } from "../../domain/datasources/gasto-datasource";
-import { GastoEntity, GastoTypes } from "../../domain/entities/gasto-entity";
-import { GastoRepository } from "../../domain/repository/gasto-repository";
+import { GastoDatasource } from "../../domain/datasources"
+import { GastoEntity, GastoTypes } from "../../domain/entities"
+import { GastoRepository } from "../../domain/repository"
 
 
 

@@ -1,13 +1,8 @@
-import { CreateUser } from "../domain/use-cases/create-user"
-import { UpdateMoneyUser } from '../domain/use-cases/updateMoney-user';
-import { DeleteUser } from '../domain/use-cases/delete-user';
-import { UserRepositoryImplementation } from "../infrastructure/repositories/user-repository-impl";
-import { PostgresDatasource } from "../infrastructure/datasources/user-pgsql-datasource";
-import { GastoRepositoryImplementation } from "../infrastructure/repositories/gasto-repository-impl";
-import { GastoPostgresDatasource } from '../infrastructure/datasources/gasto-pgsql-datasource';
-import { AgregarGasto } from "../domain/use-cases/save-gasto";
-import { GastoTypes } from "../domain/entities/gasto-entity";
-import { GetGastosUseCase } from "../domain/use-cases/get-gastos";
+import { GastoTypes } from "../domain/entities"
+import { AgregarGasto, CreateUser, DeleteUser, GetGastosUseCase, UpdateMoneyUser } from "../domain/use-cases"
+import { GastoPostgresDatasource, PostgresDatasource } from "../infrastructure/datasources"
+import { GastoRepositoryImplementation, UserRepositoryImplementation } from "../infrastructure/repositories"
+
 
 interface Comandos {
   create?: boolean
@@ -35,8 +30,6 @@ export class ServerApp {
     console.log('****  Iniciando Programa  ****')
 
     const { create, list, update, delet, id, name, money, gasto, tipo } = options
-
-
 
     if(create && !gasto) {
       const createUser = new CreateUser(userRepository)

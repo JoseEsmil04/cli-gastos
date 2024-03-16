@@ -1,6 +1,5 @@
-import { GastoEntity } from "../entities/gasto-entity"
-import { GastoRepository } from "../repository/gasto-repository"
-import { UserRepository } from "../repository/user-repository"
+import { GastoEntity } from "../entities"
+import { GastoRepository, UserRepository } from "../repository"
 
 export interface AgregarGastoUseCase {
   execute(options: GastoEntity): Promise<void>
